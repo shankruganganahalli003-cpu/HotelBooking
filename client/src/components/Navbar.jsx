@@ -22,16 +22,40 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full flex justify-between items-center p-4 bg-gray-900 text-white">
+    <nav className="
+w-full
+bg-gray-900
+text-white
+p-4
+flex
+flex-col
+sm:flex-row
+justify-between
+items-center
+gap-4
+">
       <h1 className="text-xl font-bold cursor-pointer" onClick={() => navigate("/")}>
         My App
       </h1>
 
-      <div className="flex gap-4">
+    <div className="
+flex
+flex-wrap
+justify-center
+gap-2
+w-full
+sm:w-auto
+">
         {/* Home Button */}
         <button
           onClick={() => navigate("/")}
-          className="bg-green-500 px-4 py-2 rounded text-black  hover:bg-green-600 transition"
+         className="
+px-3 py-2
+sm:px-4
+rounded
+text-sm
+sm:text-base
+"
         >
           Home
         </button>

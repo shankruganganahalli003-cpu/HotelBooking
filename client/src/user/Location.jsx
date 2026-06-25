@@ -95,13 +95,16 @@ const Location = () => {
       {props.data.label}
     </div>
   );
-
-  /* ================= UI ================= */
-  return (
-    <div style={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
+return (
+  <div className="w-full px-4 py-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
       {/* COUNTRY */}
-      <div style={{ width: 250 }}>
+      <div className="w-full">
+        <label className="block text-sm font-semibold mb-2 text-gray-700">
+          Country
+        </label>
+
         <Select
           options={countriesList}
           value={country}
@@ -113,11 +116,16 @@ const Location = () => {
             setCity(null);
             fetchStates(selected.value);
           }}
+          className="w-full"
         />
       </div>
 
       {/* STATE */}
-      <div style={{ width: 250 }}>
+      <div className="w-full">
+        <label className="block text-sm font-semibold mb-2 text-gray-700">
+          State
+        </label>
+
         <Select
           options={states}
           value={state}
@@ -128,22 +136,44 @@ const Location = () => {
             fetchCities(selected.value);
           }}
           isDisabled={!country}
+          className="w-full"
         />
       </div>
 
       {/* CITY */}
-      <div style={{ width: 250 }}>
+      <div className="w-full">
+        <label className="block text-sm font-semibold mb-2 text-gray-700">
+          City
+        </label>
+
         <Select
           options={cities}
           value={city}
           placeholder="Select City"
           onChange={(selected) => setCity(selected)}
           isDisabled={!state}
+          className="w-full"
         />
       </div>
 
     </div>
-  );
+
+    {/* Selected Values */}
+    {(country || state || city) && (
+      <div className="mt-6 p-4 rounded-xl bg-gray-100 border">
+        <h3 className="font-bold text-lg mb-2">
+          Selected Location
+        </h3>
+
+        <div className="space-y-1 text-gray-700">
+          {country && <p>🌍 Country: {country.label}</p>}
+          {state && <p>🏛 State: {state.label}</p>}
+          {city && <p>📍 City: {city.label}</p>}
+        </div>
+      </div>
+    )}
+  </div>
+);
 };
 
 export default Location;

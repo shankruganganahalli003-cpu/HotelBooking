@@ -44,8 +44,8 @@ const AllRooms = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black px-6 py-12">
-      <h1 className="text-5xl font-bold text-center text-white mb-8">
+    <div className="min-h-screen bg-black px-3 sm:px-6 py-8 sm:py-12">
+      <h1 className="text-3xl sm:text-5xl font-bold text-center text-white mb-8">
         Available Rooms
       </h1>
 
@@ -54,7 +54,7 @@ const AllRooms = () => {
         <select
           value={location}
           onChange={handleSelectChange}
-          className="px-4 py-2 rounded-lg w-1/3 text-black bg-white font-semibold  transition duration-300"
+          className="px-4 py-2 rounded-lg w-full sm:w-80 text-black bg-white font-semibold  transition duration-300"
         >
           {locations.map((loc) => (
             <option key={loc} value={loc}>
@@ -85,7 +85,7 @@ const AllRooms = () => {
 
               <div className="md:w-1/2 w-full p-8 flex flex-col justify-between text-white">
                 <div className="space-y-4">
-                  <h2 className="text-3xl font-bold">Room {r.roomNumber}</h2>
+                  <h2 className="text-2xl sm:text-3xl font-bold">Room {r.roomNumber}</h2>
                   <p className="font-semibold">
                     Type: <span className="font-normal">{r.type}</span>
                   </p>

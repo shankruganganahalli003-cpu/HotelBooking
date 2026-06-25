@@ -67,85 +67,168 @@ const UpdateHistory = () => {
       setLoading(false);
     }
   };
+return (
+  <div className="min-h-screen bg-gray-900 flex items-center justify-center px-3 sm:px-6 py-6">
+    <div className="w-full max-w-4xl bg-gray-800 rounded-2xl shadow-2xl border border-gray-700 overflow-hidden">
 
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 p-6">
-      <div className="bg-gray-800 w-full max-w-3xl rounded-xl shadow-xl p-6 border border-gray-700">
-        <h2 className="text-2xl font-bold mb-6 text-gray-100 text-center">
+      {/* Header */}
+      <div className="bg-yellow-500 p-4 sm:p-6">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-black text-center">
           Update Booking
         </h2>
+      </div>
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* Form */}
+      <div className="p-4 sm:p-6 md:p-8">
+        <form
+          onSubmit={handleSubmit}
+          className="grid grid-cols-1 md:grid-cols-2 gap-5"
+        >
           {/* Name */}
-          <div className="flex flex-col">
-            <label className="mb-1 text-gray-300 font-medium">Name</label>
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-300">
+              Full Name
+            </label>
+
             <input
               type="text"
               name="name"
               value={form.name}
               onChange={handleChange}
-              className="bg-gray-700 border border-gray-600 rounded px-3 py-2 text-gray-200 focus:outline-none focus:border-gray-400 transition"
               placeholder="Enter your name"
               required
+              className="
+                w-full
+                px-4
+                py-3
+                rounded-xl
+                bg-gray-700
+                border
+                border-gray-600
+                text-white
+                focus:outline-none
+                focus:ring-2
+                focus:ring-yellow-500
+              "
             />
           </div>
 
           {/* Phone */}
-          <div className="flex flex-col">
-            <label className="mb-1 text-gray-300 font-medium">Phone</label>
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-300">
+              Phone Number
+            </label>
+
             <input
-              type="text"
+              type="tel"
               name="phoneno"
               value={form.phoneno}
               onChange={handleChange}
-              className="bg-gray-700 border border-gray-600 rounded px-3 py-2 text-gray-200 focus:outline-none focus:border-gray-400 transition"
-              placeholder="Enter phone number"
+              placeholder="9876543210"
               required
+              className="
+                w-full
+                px-4
+                py-3
+                rounded-xl
+                bg-gray-700
+                border
+                border-gray-600
+                text-white
+                focus:outline-none
+                focus:ring-2
+                focus:ring-yellow-500
+              "
             />
           </div>
 
-          {/* Check-In */}
-          <div className="flex flex-col">
-            <label className="mb-1 text-gray-300 font-medium">Check-In</label>
+          {/* Check In */}
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-300">
+              Check-In Date
+            </label>
+
             <input
               type="date"
               name="checkIn"
               value={form.checkIn}
               onChange={handleChange}
-              className="bg-gray-700 border border-gray-600 rounded px-3 py-2 text-gray-200 focus:outline-none focus:border-gray-400 transition"
               required
+              className="
+                w-full
+                px-4
+                py-3
+                rounded-xl
+                bg-gray-700
+                border
+                border-gray-600
+                text-white
+                focus:outline-none
+                focus:ring-2
+                focus:ring-yellow-500
+              "
             />
           </div>
 
-          {/* Check-Out */}
-          <div className="flex flex-col">
-            <label className="mb-1 text-gray-300 font-medium">Check-Out</label>
+          {/* Check Out */}
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-300">
+              Check-Out Date
+            </label>
+
             <input
               type="date"
               name="checkOut"
               value={form.checkOut}
               onChange={handleChange}
-              className="bg-gray-700 border border-gray-600 rounded px-3 py-2 text-gray-200 focus:outline-none focus:border-gray-400 transition"
               required
+              className="
+                w-full
+                px-4
+                py-3
+                rounded-xl
+                bg-gray-700
+                border
+                border-gray-600
+                text-white
+                focus:outline-none
+                focus:ring-2
+                focus:ring-yellow-500
+              "
             />
           </div>
 
-          {/* Submit Button spans both columns */}
-          <div className="md:col-span-2 mt-2">
+          {/* Submit */}
+          <div className="md:col-span-2 pt-2">
             <button
               type="submit"
-              className={`w-full py-2 rounded bg-yellow-500  font-bold hover:bg-yellow-600 transition ${
-                loading ? "opacity-50 cursor-not-allowed" : ""
-              }`}
               disabled={loading}
+              className={`
+                w-full
+                py-3 sm:py-4
+                rounded-xl
+                font-bold
+                text-black
+                bg-yellow-500
+                hover:bg-yellow-600
+                transition-all
+                ${
+                  loading
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:scale-[1.02]"
+                }
+              `}
             >
-              {loading ? "Updating..." : "Update Booking"}
+              {loading
+                ? "Updating..."
+                : "Update Booking"}
             </button>
           </div>
         </form>
       </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default UpdateHistory;

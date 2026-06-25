@@ -36,96 +36,149 @@ const Allcustomers = () => {
       </div>
     );
   }
+return (
+  <div className="min-h-screen bg-black text-gray-200 p-4 sm:p-6">
+    <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-yellow-400 text-center">
+      Customer Bookings
+    </h1>
 
-  /* ================= UI ================= */
-  return (
-    <div className="min-h-screen bg-black text-gray-200 p-6">
+    {customers.length === 0 ? (
+      <p className="text-center text-gray-500">No customers found.</p>
+    ) : (
+      <>
+        {/* MOBILE VIEW */}
+        <div className="md:hidden space-y-4">
+          {customers.map((c, index) => (
+            <div
+              key={c._id}
+              className="bg-gray-900 border border-yellow-500/20 rounded-2xl p-4 shadow-lg"
+            >
+              <div className="flex justify-between items-center mb-3">
+                <span className="text-yellow-400 font-bold">
+                  #{index + 1}
+                </span>
 
-      <h1 className="text-3xl font-bold mb-6 text-white">
-        Customer Bookings
-      </h1>
+                <span className="text-xs bg-yellow-500 text-black px-3 py-1 rounded-full font-semibold">
+                  Booking
+                </span>
+              </div>
 
-      {customers.length === 0 ? (
-        <p className="text-gray-500">No customers found.</p>
-      ) : (
-        <div className="overflow-x-auto border border-gray-800 rounded-xl shadow-lg">
+              <div className="space-y-2 text-sm">
+                <p>
+                  <span className="text-yellow-400">Name:</span>{" "}
+                  {c.name || "N/A"}
+                </p>
+
+                <p>
+                  <span className="text-yellow-400">Email:</span>{" "}
+                  {c.userId?.email || "No Email"}
+                </p>
+
+                <p>
+                  <span className="text-yellow-400">Phone:</span>{" "}
+                  {c.phoneno || "N/A"}
+                </p>
+
+                <p>
+                  <span className="text-yellow-400">Check-In:</span>{" "}
+                  {c.checkIn
+                    ? new Date(c.checkIn).toLocaleDateString("en-IN", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })
+                    : "-"}
+                </p>
+
+                <p>
+                  <span className="text-yellow-400">Check-Out:</span>{" "}
+                  {c.checkOut
+                    ? new Date(c.checkOut).toLocaleDateString("en-IN", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })
+                    : "-"}
+                </p>
+
+                <p>
+                  <span className="text-yellow-400">Booked On:</span>{" "}
+                  {c.createdAt
+                    ? new Date(c.createdAt).toLocaleDateString("en-IN")
+                    : "-"}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* DESKTOP VIEW */}
+        <div className="hidden md:block overflow-x-auto border border-gray-800 rounded-2xl shadow-lg">
           <table className="w-full text-sm">
-
-            {/* TABLE HEAD */}
-            <thead className="bg-gray-900 text-gray-300">
+            <thead className="bg-gray-900 text-yellow-400">
               <tr>
-                <th className="px-5 py-3 text-left">#</th>
-                <th className="px-5 py-3 text-left">Name</th>
-                <th className="px-5 py-3 text-left">Email</th>
-                <th className="px-5 py-3 text-left">Phone</th>
-                <th className="px-5 py-3 text-left">Check-In</th>
-                <th className="px-5 py-3 text-left">Check-Out</th>
-                <th className="px-5 py-3 text-left">Booked On</th>
+                <th className="px-5 py-4 text-left">#</th>
+                <th className="px-5 py-4 text-left">Name</th>
+                <th className="px-5 py-4 text-left">Email</th>
+                <th className="px-5 py-4 text-left">Phone</th>
+                <th className="px-5 py-4 text-left">Check-In</th>
+                <th className="px-5 py-4 text-left">Check-Out</th>
+                <th className="px-5 py-4 text-left">Booked On</th>
               </tr>
             </thead>
 
-            {/* TABLE BODY */}
             <tbody>
               {customers.map((c, index) => (
                 <tr
                   key={c._id}
                   className="border-t border-gray-800 hover:bg-gray-900 transition"
                 >
-                  <td className="px-5 py-3 text-yellow-400 font-medium">
+                  <td className="px-5 py-4 text-yellow-400 font-bold">
                     {index + 1}
                   </td>
 
-                  <td className="px-5 py-3">
-                    {c.name || "N/A"}
-                  </td>
+                  <td className="px-5 py-4">{c.name || "N/A"}</td>
 
-                  <td className="px-5 py-3 text-gray-400">
+                  <td className="px-5 py-4 text-gray-400">
                     {c.userId?.email || "No Email"}
                   </td>
 
-                  <td className="px-5 py-3">
-                    {c.phoneno || "N/A"}
+                  <td className="px-5 py-4">{c.phoneno || "N/A"}</td>
+
+                  <td className="px-5 py-4">
+                    {c.checkIn
+                      ? new Date(c.checkIn).toLocaleDateString("en-IN", {
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        })
+                      : "-"}
                   </td>
 
-                <td className="px-5 py-3 text-gray-400">
-    {c.checkIn
-    ? new Date(c.checkIn).toLocaleDateString("en-IN", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      })
-    : "-"}
-</td>
+                  <td className="px-5 py-4">
+                    {c.checkOut
+                      ? new Date(c.checkOut).toLocaleDateString("en-IN", {
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        })
+                      : "-"}
+                  </td>
 
-                <td className="px-5 py-3 text-gray-400">
-  {c.checkOut
-    ? new Date(c.checkOut).toLocaleDateString("en-IN", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      })
-    : "-"}
-</td>
-
-                  {/* CREATED */}
-                  <td className="px-5 py-3 text-gray-500">
+                  <td className="px-5 py-4 text-gray-400">
                     {c.createdAt
-                      ? new Date(c.createdAt).toLocaleDateString("en-IN",{
-                        day:"numeric",
-                        month:"numeric",
-                        year:"numeric"
-                      })
+                      ? new Date(c.createdAt).toLocaleDateString("en-IN")
                       : "-"}
                   </td>
                 </tr>
               ))}
             </tbody>
-
           </table>
         </div>
-      )}
-    </div>
-  );
+      </>
+    )}
+  </div>
+);
 };
 
 export default Allcustomers;

@@ -43,13 +43,13 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full h-screen bg-black flex items-center justify-center">
+   <div className="min-h-screen bg-black flex items-center justify-center px-4 py-6">
 
       <form
         onSubmit={handleSubmit}
-        className="w-[420px] bg-black/70 backdrop-blur-lg border border-yellow-400/30 rounded-2xl shadow-[0_0_40px_rgba(255,255,0,0.3)] p-10 flex flex-col gap-8"
+        className="w-full max-w-md bg-black/70 backdrop-blur-lg border border-yellow-400/30 rounded-2xl shadow-[0_0_40px_rgba(255,255,0,0.3)] p-10 flex flex-col gap-8"
       >
-        <h1 className="text-4xl font-bold text-center text-yellow-400 drop-shadow-lg">
+        <h1 className="text-3xl sm:text-4xl font-bold text-center text-yellow-400 drop-shadow-lg">
           Welcome Back
         </h1>
 

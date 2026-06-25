@@ -57,150 +57,200 @@ const BookRoom = () => {
       toast.error(err?.response?.data?.message || "Booking failed");
     }
   };
+return (
 
-  /* ================= UI ================= */
-  return (
-    <div className="min-h-screen grid lg:grid-cols-2 bg-black">
+  <div className="min-h-screen bg-black grid grid-cols-1 lg:grid-cols-2">
 
-      {/* LEFT IMAGE */}
-      <div className="h-[45vh] lg:h-screen overflow-hidden">
-        <img
-          src={room?.image?.[0]}
-          alt="Room"
-          className="w-full h-full object-cover"
+```
+{/* ROOM IMAGE */}
+<div className="h-[35vh] sm:h-[45vh] lg:h-screen overflow-hidden">
+  <img
+    src={room?.image?.[0]}
+    alt="Room"
+    className="w-full h-full object-cover"
+  />
+</div>
+
+{/* FORM */}
+<div className="flex items-center justify-center px-4 sm:px-6 lg:px-10 py-6 sm:py-10">
+  <form
+    onSubmit={handleSubmit}
+    className="
+      w-full
+      max-w-3xl
+      bg-white/5
+      backdrop-blur-2xl
+      border border-white/10
+      rounded-3xl
+      shadow-[0_30px_80px_rgba(0,0,0,0.8)]
+      p-5 sm:p-8 lg:p-12
+      space-y-6 sm:space-y-8
+      text-white
+    "
+  >
+    {/* ROOM INFO */}
+    <div className="space-y-3 border-b border-gray-700 pb-6">
+      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
+        Room {room?.roomNumber}
+      </h1>
+
+      <p className="text-gray-300 leading-relaxed">
+        {room?.desc}
+      </p>
+
+      <div className="flex flex-col sm:flex-row sm:justify-between gap-2 text-base sm:text-lg">
+        <span>👥 {room?.member} Guests</span>
+        <span>📍 {room?.location}</span>
+      </div>
+
+      <p className="text-2xl sm:text-3xl font-bold text-yellow-400">
+        ₹{room?.price} / night
+      </p>
+    </div>
+
+    {/* INPUTS */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+
+      {/* NAME */}
+      <div className="space-y-2">
+        <label className="text-sm text-gray-300">
+          Full Name
+        </label>
+
+        <input
+          type="text"
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          required
+          placeholder="Enter your name"
+          className="
+            w-full
+            px-4 py-3
+            rounded-xl
+            bg-black/40
+            border border-gray-600
+            focus:border-yellow-400
+            focus:ring-2
+            focus:ring-yellow-400
+            outline-none
+            text-white
+          "
         />
       </div>
 
-      {/* RIGHT FORM */}
-      <div className="flex items-center justify-center px-8 py-14">
-        <form
-          onSubmit={handleSubmit}
+      {/* PHONE */}
+      <div className="space-y-2">
+        <label className="text-sm text-gray-300">
+          Phone Number
+        </label>
+
+        <input
+          type="tel"
+          name="phoneno"
+          value={form.phoneno}
+          onChange={handleChange}
+          required
+          placeholder="9876543210"
           className="
-            w-full max-w-3xl
-            bg-white/5
-            backdrop-blur-2xl
-            border border-white/10
-            rounded-3xl
-            shadow-[0_30px_80px_rgba(0,0,0,0.8)]
-            p-12 space-y-10
+            w-full
+            px-4 py-3
+            rounded-xl
+            bg-black/40
+            border border-gray-600
+            focus:border-yellow-400
+            focus:ring-2
+            focus:ring-yellow-400
+            outline-none
             text-white
           "
-        >
-          {/* ROOM INFO */}
-          <div className="space-y-4 border-b border-gray-700 pb-8">
-            <h1 className="text-4xl font-bold tracking-wide">
-              Room {room?.roomNumber}
-            </h1>
+        />
+      </div>
 
-            <p className="leading-relaxed max-w-2xl">{room?.desc}</p>
+      {/* CHECK IN */}
+      <div className="space-y-2">
+        <label className="text-sm text-gray-300">
+          Check-In
+        </label>
 
-            <div className="flex justify-between text-lg">
-              <span>👥 {room?.member} Guests</span>
-              <span>📍 {room?.location}</span>
-            </div>
+        <input
+          type="date"
+          name="checkIn"
+          min={today}
+          value={form.checkIn}
+          onChange={handleChange}
+          required
+          className="
+            w-full
+            px-4 py-3
+            rounded-xl
+            bg-black/40
+            border border-gray-600
+            focus:border-yellow-400
+            focus:ring-2
+            focus:ring-yellow-400
+            outline-none
+            text-white
+          "
+        />
+      </div>
 
-            <p className="text-3xl font-bold">₹{room?.price} / night</p>
-          </div>
+      {/* CHECK OUT */}
+      <div className="space-y-2">
+        <label className="text-sm text-gray-300">
+          Check-Out
+        </label>
 
-          {/* INPUTS */}
-          <div className="grid md:grid-cols-2 gap-8">
-
-            {/* NAME */}
-            <div className="space-y-2">
-              <label className="text-sm">Full Name</label>
-              <input
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                required
-                placeholder="Enter your name"
-                className="
-                  w-full px-5 py-4 rounded-xl
-                  bg-black/40 border border-gray-600
-                  focus:border-blue-500 focus:ring-2 focus:ring-blue-500
-                  outline-none transition text-white
-                "
-              />
-            </div>
-
-            {/* PHONE */}
-            <div className="space-y-2">
-              <label className="text-sm">Phone Number</label>
-              <input
-                type="tel"
-                name="phoneno"
-                value={form.phoneno}
-                onChange={handleChange}
-                required
-                placeholder="9876543210"
-                className="
-                  w-full px-5 py-4 rounded-xl
-                  bg-black/40 border border-gray-600
-                  focus:border-blue-500 focus:ring-2 focus:ring-blue-500
-                  outline-none transition text-white
-                "
-              />
-            </div>
-
-            {/* CHECK-IN */}
-            <div className="space-y-2">
-              <label className="text-sm">Check-In</label>
-              <input
-                type="date"
-                name="checkIn"
-                min={today}
-                value={form.checkIn}
-                onChange={handleChange}
-                required
-                className="
-                  w-full px-5 py-4 rounded-xl
-                  bg-black/40 border border-gray-600
-                  focus:ring-2 focus:ring-blue-500 outline-none
-                  text-white
-                "
-              />
-            </div>
-
-            {/* CHECK-OUT */}
-            <div className="space-y-2">
-              <label className="text-sm">Check-Out</label>
-              <input
-                type="date"
-                name="checkOut"
-                min={form.checkIn || today}
-                value={form.checkOut}
-                onChange={handleChange}
-                required
-                className="
-                  w-full px-5 py-4 rounded-xl
-                  bg-black/40 border border-gray-600
-                  focus:ring-2 focus:ring-blue-500 outline-none
-                  text-white
-                "
-              />
-            </div>
-          </div>
-
-          {/* BUTTON */}
-          <button
-            type="submit"
-            className="
-              w-full py-5 rounded-xl
-              font-semibold text-lg
-              bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600
-              hover:scale-[1.02]
-              hover:shadow-[0_10px_30px_rgba(255,215,0,0.4)]
-              transition duration-300
-              text-black
-            "
-          >
-            Confirm Booking ✨
-          </button>
-        </form>
+        <input
+          type="date"
+          name="checkOut"
+          min={form.checkIn || today}
+          value={form.checkOut}
+          onChange={handleChange}
+          required
+          className="
+            w-full
+            px-4 py-3
+            rounded-xl
+            bg-black/40
+            border border-gray-600
+            focus:border-yellow-400
+            focus:ring-2
+            focus:ring-yellow-400
+            outline-none
+            text-white
+          "
+        />
       </div>
     </div>
-  );
+
+    {/* BUTTON */}
+    <button
+      type="submit"
+      className="
+        w-full
+        py-4
+        rounded-xl
+        font-semibold
+        text-base sm:text-lg
+        bg-gradient-to-r
+        from-yellow-400
+        via-yellow-500
+        to-yellow-600
+        text-black
+        hover:scale-[1.02]
+        transition-all
+        duration-300
+      "
+    >
+      Confirm Booking ✨
+    </button>
+  </form>
+</div>
+```
+
+  </div>
+);
 };
 
 export default BookRoom;

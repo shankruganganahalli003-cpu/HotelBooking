@@ -26,93 +26,178 @@ const History = () => {
 
     fetchBooking();
   }, [id]);
+return (
 
-  return (
-    <div className="p-6 bg-gray-900 min-h-screen text-gray-200">
-      <h1 className="text-3xl font-bold mb-6 text-gray-100">Booking History</h1>
+  <div className="min-h-screen bg-gray-900 text-gray-200 px-3 sm:px-6 py-6">
+    <div className="max-w-7xl mx-auto">
 
-      {bookings.length === 0 ? (
-        <p className="text-gray-400">No bookings found for this ID.</p>
-      ) : (
-        <div className="flex flex-col gap-5">
-          {bookings.map((b) => (
-            <div
-              key={b._id}
-              className="flex flex-col md:flex-row bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-700 hover:shadow-lg transition-shadow"
-            >
-              {/* Room Image */}
-              <div className="w-full md:w-1/4 bg-gray-700 flex items-center justify-center">
-                <img
-                  src={b.room.image[0]}
-                  alt={`Room ${b.room.roomNumber}`}
-                  className="object-cover w-full h-40 md:h-full"
-                />
+```
+  {/* Heading */}
+  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-100 mb-6">
+    Booking History
+  </h1>
+
+  {bookings.length === 0 ? (
+    <div className="bg-gray-800 rounded-xl p-6 text-center">
+      <p className="text-gray-400 text-base sm:text-lg">
+        No bookings found for this ID.
+      </p>
+    </div>
+  ) : (
+    <div className="flex flex-col gap-5">
+      {bookings.map((b) => (
+        <div
+          key={b._id}
+          className="
+            bg-gray-800
+            rounded-2xl
+            overflow-hidden
+            border
+            border-gray-700
+            shadow-lg
+            hover:shadow-2xl
+            transition-all
+            duration-300
+            flex
+            flex-col
+            lg:flex-row
+          "
+        >
+          {/* ROOM IMAGE */}
+          <div className="w-full lg:w-72 xl:w-80 flex-shrink-0">
+            <img
+              src={b.room.image?.[0]}
+              alt={`Room ${b.room.roomNumber}`}
+              className="
+                w-full
+                h-56
+                sm:h-72
+                lg:h-full
+                object-cover
+              "
+            />
+          </div>
+
+          {/* DETAILS */}
+          <div className="flex-1 p-4 sm:p-6 relative">
+
+            {/* STATUS */}
+            <div className="flex justify-end mb-4">
+              <span
+                className={`px-3 py-1 rounded-full text-xs sm:text-sm font-bold ${
+                  b.status === "booked"
+                    ? "bg-yellow-500 text-black"
+                    : b.status === "completed"
+                    ? "bg-green-500 text-black"
+                    : "bg-red-500 text-black"
+                }`}
+              >
+                {b.status.toUpperCase()}
+              </span>
+            </div>
+
+            {/* ROOM INFO */}
+            <div className="mb-5">
+              <h2 className="text-xl sm:text-2xl font-bold text-white">
+                Room {b.room.roomNumber}
+              </h2>
+
+              <p className="text-gray-400 mt-1">
+                {b.room.type}
+              </p>
+
+              <p className="text-gray-400">
+                📍 {b.room.location}
+              </p>
+
+              <p className="text-gray-400">
+                👥 {b.room.member} Members
+              </p>
+            </div>
+
+            {/* BOOKING DETAILS */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm sm:text-base">
+
+              <div className="flex items-center gap-2">
+                <FaCalendarAlt className="text-yellow-400" />
+                <span>
+                  Check-In:{" "}
+                  {new Date(
+                    b.checkIn
+                  ).toLocaleDateString()}
+                </span>
               </div>
 
-              {/* Details Section */}
-              <div className="p-4 flex-1 flex flex-col justify-between relative">
-                {/* Status Badge */}
-                <span
-                  className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold ${
-                    b.status === "booked"
-                      ? "bg-yellow-600 text-gray-900"
-                      : b.status === "completed"
-                      ? "bg-green-600 text-gray-900"
-                      : "bg-red-600 text-gray-900"
-                  }`}
-                >
-                  {b.status.toUpperCase()}
+              <div className="flex items-center gap-2">
+                <FaCalendarAlt className="text-yellow-400" />
+                <span>
+                  Check-Out:{" "}
+                  {new Date(
+                    b.checkOut
+                  ).toLocaleDateString()}
                 </span>
+              </div>
 
-                {/* Room Info */}
-                <div className="mb-3">
-                  <h2 className="text-lg font-semibold text-gray-100">
-                    Room {b.room.roomNumber} - {b.room.type}
-                  </h2>
-                  <p className="text-gray-400 text-sm">{b.room.location}</p>
-                  <p className="text-gray-300 text-sm mt-1">Members: {b.room.member}</p>
-                </div>
+              <div className="flex items-center gap-2">
+                <FaUser className="text-yellow-400" />
+                <span>{b.name}</span>
+              </div>
 
-                {/* Booking Details */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-300 text-sm">
-                  <div className="flex items-center gap-2">
-                    <FaCalendarAlt className="text-yellow-400" /> 
-                    <span>Check-In: {new Date(b.checkIn).toLocaleDateString()}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <FaCalendarAlt className="text-yellow-400" /> 
-                    <span>Check-Out: {new Date(b.checkOut).toLocaleDateString()}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <FaUser className="text-yellow-400" /> <span>Name: {b.name}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <FaPhone className="text-yellow-400" /> <span>Phone: {b.phoneno}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <FaMoneyBillAlt className="text-yellow-400" /> <span>Price: ₹{b.room.price}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span>Booked At: {new Date(b.createdAt).toLocaleString()}</span>
-                  </div>
-                </div>
+              <div className="flex items-center gap-2">
+                <FaPhone className="text-yellow-400" />
+                <span>{b.phoneno}</span>
+              </div>
 
-                {/* Update Button */}
-                <div className="mt-3">
-                  <button
-                    onClick={() => navigate(`/updatehistory/${b._id}`)}
-                    className="px-4 py-2 bg-yellow-500 text-gray-900 font-semibold rounded hover:bg-yellow-600 transition"
-                  >
-                    Update
-                  </button>
-                </div>
+              <div className="flex items-center gap-2">
+                <FaMoneyBillAlt className="text-yellow-400" />
+                <span>
+                  ₹{b.room.price}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2 text-gray-400">
+                <span>
+                  {new Date(
+                    b.createdAt
+                  ).toLocaleString()}
+                </span>
               </div>
             </div>
-          ))}
+
+            {/* BUTTON */}
+            <div className="mt-6">
+              <button
+                onClick={() =>
+                  navigate(`/updatehistory/${b._id}`)
+                }
+                className="
+                  w-full
+                  sm:w-auto
+                  px-6
+                  py-3
+                  bg-yellow-500
+                  text-black
+                  font-semibold
+                  rounded-xl
+                  hover:bg-yellow-600
+                  hover:scale-[1.02]
+                  transition-all
+                "
+              >
+                Update Booking
+              </button>
+            </div>
+          </div>
         </div>
-      )}
+      ))}
     </div>
-  );
+  )}
+</div>
+```
+
+  </div>
+);
+
 };
 
 export default History;

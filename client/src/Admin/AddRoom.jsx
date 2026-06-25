@@ -17,20 +17,30 @@ const AddRoom = () => {
   });
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const { data } = await axios.post(
         "https://unidhuhkdccbdkj.onrender.com/api/room/create",
         form,
-        { headers: { "Content-Type": "application/json" }, withCredentials: true }
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
       );
 
       if (data.success) {
         toast.success(data.message);
+
         setForm({
           roomNumber: "",
           type: "",
@@ -40,6 +50,7 @@ const AddRoom = () => {
           image: "",
           desc: "",
         });
+
         navigate("/admin/room");
       }
     } catch (err) {
@@ -48,60 +59,165 @@ const AddRoom = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-gray-800 flex items-center justify-center px-6 py-16">
-
-      {/* FORM CARD */}
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-5xl bg-black/50 backdrop-blur-lg border border-gray-700 rounded-3xl p-12 space-y-10 shadow-lg"
-      >
-        {/* TITLE */}
-        <h1 className="text-5xl font-extrabold text-center text-yellow-400">
-          Add New Room
-        </h1>
-
-        {/* INPUT GRID */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {[
-            { name: "roomNumber", type: "number", placeholder: "Room Number" },
-            { name: "type", type: "text", placeholder: "Room Type (Deluxe/Suite)" },
-            { name: "location", type: "text", placeholder: "Location" },
-            { name: "member", type: "number", placeholder: "Max Guests" },
-            { name: "price", type: "number", placeholder: "Room Price" },
-            { name: "image", type: "text", placeholder: "Image URL" },
-          ].map((input) => (
-            <input
-              key={input.name}
-              type={input.type}
-              name={input.name}
-              value={form[input.name]}
-              onChange={handleChange}
-              placeholder={input.placeholder}
-              required
-              className="w-full p-4 rounded-xl bg-gray-900 text-white placeholder-gray-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition hover:bg-gray-800"
-            />
-          ))}
-        </div>
-
-        {/* DESCRIPTION */}
-        <textarea
-          name="desc"
-          value={form.desc}
-          onChange={handleChange}
-          placeholder="Room Description..."
-          rows="4"
-          required
-          className="w-full p-4 rounded-xl bg-gray-900 text-white placeholder-gray-400 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition resize-none hover:bg-gray-800"
-        />
-
-        {/* SUBMIT BUTTON */}
-        <button
-          type="submit"
-          className="w-full py-5 text-lg font-bold rounded-xl bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(255,215,0,0.7)] transition duration-300 text-black"
+    <div className="min-h-screen bg-black px-4 py-6 sm:px-6 sm:py-10">
+      <div className="max-w-5xl mx-auto">
+        <form
+          onSubmit={handleSubmit}
+          className="
+            bg-gray-900
+            border border-yellow-500/20
+            rounded-2xl
+            sm:rounded-3xl
+            shadow-[0_0_40px_rgba(255,215,0,0.15)]
+            p-4
+            sm:p-6
+            md:p-8
+            lg:p-10
+          "
         >
-          Create Room
-        </button>
-      </form>
+          {/* Heading */}
+          <div className="mb-8 text-center">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-400">
+              Add New Room
+            </h1>
+
+            <p className="text-gray-400 text-sm sm:text-base mt-2">
+              Create a new room listing
+            </p>
+          </div>
+
+          {/* Inputs */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+            <input
+              type="number"
+              name="roomNumber"
+              value={form.roomNumber}
+              onChange={handleChange}
+              placeholder="Room Number"
+              required
+              className="w-full h-12 px-4 rounded-xl bg-black text-white border border-gray-700 focus:border-yellow-400 outline-none"
+            />
+
+            <input
+              type="text"
+              name="type"
+              value={form.type}
+              onChange={handleChange}
+              placeholder="Room Type"
+              required
+              className="w-full h-12 px-4 rounded-xl bg-black text-white border border-gray-700 focus:border-yellow-400 outline-none"
+            />
+
+            <input
+              type="text"
+              name="location"
+              value={form.location}
+              onChange={handleChange}
+              placeholder="Location"
+              required
+              className="w-full h-12 px-4 rounded-xl bg-black text-white border border-gray-700 focus:border-yellow-400 outline-none"
+            />
+
+            <input
+              type="number"
+              name="member"
+              value={form.member}
+              onChange={handleChange}
+              placeholder="Maximum Guests"
+              required
+              className="w-full h-12 px-4 rounded-xl bg-black text-white border border-gray-700 focus:border-yellow-400 outline-none"
+            />
+
+            <input
+              type="number"
+              name="price"
+              value={form.price}
+              onChange={handleChange}
+              placeholder="Room Price"
+              required
+              className="w-full h-12 px-4 rounded-xl bg-black text-white border border-gray-700 focus:border-yellow-400 outline-none"
+            />
+
+            <input
+              type="text"
+              name="image"
+              value={form.image}
+              onChange={handleChange}
+              placeholder="Image URL"
+              required
+              className="w-full h-12 px-4 rounded-xl bg-black text-white border border-gray-700 focus:border-yellow-400 outline-none"
+            />
+          </div>
+
+          {/* Description */}
+          <div className="mt-6">
+            <textarea
+              name="desc"
+              value={form.desc}
+              onChange={handleChange}
+              placeholder="Room Description..."
+              rows="5"
+              required
+              className="
+                w-full
+                p-4
+                rounded-xl
+                bg-black
+                text-white
+                border border-gray-700
+                focus:border-yellow-400
+                outline-none
+                resize-none
+              "
+            />
+          </div>
+
+          {/* Preview */}
+          {form.image && (
+            <div className="mt-6">
+              <p className="text-yellow-400 mb-2 font-medium">
+                Image Preview
+              </p>
+
+              <img
+                src={form.image}
+                alt="Preview"
+                className="
+                  w-full
+                  h-48
+                  sm:h-64
+                  object-cover
+                  rounded-xl
+                  border border-gray-700
+                "
+                onError={(e) => {
+                  e.target.style.display = "none";
+                }}
+              />
+            </div>
+          )}
+
+          {/* Button */}
+          <button
+            type="submit"
+            className="
+              mt-8
+              w-full
+              h-12
+              sm:h-14
+              rounded-xl
+              font-bold
+              text-black
+              bg-yellow-400
+              hover:bg-yellow-500
+              hover:scale-[1.01]
+              transition
+            "
+          >
+            Create Room
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
