@@ -11,7 +11,7 @@ const GetAllRooms = () => {
   const fetchRooms = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:3000/api/room/getall",
+        "https://unidhuhkdccbdkj.onrender.com/api/room/getall",
         { withCredentials: true }
       );
 
