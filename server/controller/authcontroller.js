@@ -60,13 +60,12 @@ module.exports.login = async (req, res) => {
       return res.status(400).json({ message: "Password does not match" });
     }
 const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
-    
-   res.cookie("token", token, {
+res.cookie("token", token, {
   httpOnly: true,
   secure: true,
   sameSite: "none",
+  maxAge: 7 * 24 * 60 * 60 * 1000
 });
-
 res.status(200).json({ message:"user logged in",
   success: true,
   token,
