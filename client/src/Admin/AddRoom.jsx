@@ -24,7 +24,7 @@ const AddRoom = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/api/room/create",
+        "https://unidhuhkdccbdkj.onrender.com/api/room/create",
         form,
         { headers: { "Content-Type": "application/json" }, withCredentials: true }
       );

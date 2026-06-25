@@ -31,7 +31,7 @@ const GetAllRooms = () => {
 
     try {
       const { data } = await axios.delete(
-        `http://localhost:3000/api/room/delete/${id}`,
+        `https://unidhuhkdccbdkj.onrender.com/api/room/delete/${id}`,
         { withCredentials: true }
       );
 

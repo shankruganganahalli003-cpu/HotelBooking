@@ -10,7 +10,7 @@ const Allcustomers = () => {
   const fetchCustomers = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:3000/api/book/getall",
+        "https://unidhuhkdccbdkj.onrender.com/api/book/getall",
         { withCredentials: true }
       );
 
