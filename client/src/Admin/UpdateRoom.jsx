@@ -40,7 +40,7 @@ const UpdateRoom = () => {
     e.preventDefault();
     try {
       const { data } = await axios.put(
-        `http://localhost:3000/api/room/update/${id}`,
+        `https://unidhuhkdccbdkj.onrender.com/api/room/update/${id}`,
         form,
         { headers: { "Content-Type": "application/json" }, withCredentials: true }
       );
