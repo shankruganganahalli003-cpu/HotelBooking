@@ -3,7 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../redux/authSlice";
+import { setUser, setToken } from "../redux/authSlice";
 
 const Login = () => {
   const { token, user } = useSelector((state) => state.auth);
@@ -11,7 +11,7 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const [form, setForm] = useState({
-    email: "",
+    email: "",  
     password: "",
   });
 
@@ -30,10 +30,13 @@ const Login = () => {
       );
 
       if (data.success) {
-        toast.success(data.message);
-        dispatch(setUser(data.user));
-        navigate("/");
-      }
+  toast.success(data.message);
+
+  dispatch(setUser(data.user));
+  dispatch(setToken(data.token)); // ✅ THIS IS THE MISSING PIECE
+
+  navigate("/");
+}
     } catch (err) {
       toast.error(err?.response?.data?.message || "Login failed");
     }

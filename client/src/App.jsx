@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Register from './components/Register';
-import Login from './components/login';
+import Login from './components/Login';
 import ProtectedRoute from './routes/ProtectedRoute';
-import AdminDashBoard from './Admin/AdminDashBoard';
+import AdminDashBoard from './Admin/AdminDashBoard';  
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 import AddRoom from './Admin/AddRoom';
