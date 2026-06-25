@@ -17,7 +17,7 @@ const UpdateRoom = () => {
   const fetchRoom = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3000/api/room/getone/${id}`,
+        `https://unidhuhkdccbdkj.onrender.com/api/room/getone/${id}`,
         { withCredentials: true }
       );
       if (data.success) {

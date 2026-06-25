@@ -22,8 +22,8 @@ const AllRooms = () => {
 
         const url =
           !location || location === "All cities"
-            ? `http://localhost:3000/api/room/filter`
-            : `http://localhost:3000/api/room/filter?location=${encodeURIComponent(location)}`;
+            ? `https://unidhuhkdccbdkj.onrender.com/api/room/filter`
+            : `https://unidhuhkdccbdkj.onrender.com/api/room/filter?location=${encodeURIComponent(location)}`;
 
         const { data } = await axios.get(url, { withCredentials: true });
         if (data.success);

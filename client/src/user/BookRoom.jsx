@@ -22,7 +22,7 @@ const BookRoom = () => {
   const fetchRoom = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3000/api/room/getone/${roomId}`,
+        `https://unidhuhkdccbdkj.onrender.com/api/room/getone/${roomId}`,
         { withCredentials: true }
       );
       if (data.success) setRoom(data.room);
@@ -45,7 +45,7 @@ const BookRoom = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        `http://localhost:3000/api/book/create/${roomId}`,
+        `https://unidhuhkdccbdkj.onrender.com/api/book/create/${roomId}`,
         form,
         { withCredentials: true }
       );

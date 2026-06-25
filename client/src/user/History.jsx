@@ -15,7 +15,7 @@ const History = () => {
     const fetchBooking = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:3000/api/book/history/${id}`,
+          `https://unidhuhkdccbdkj.onrender.com/api/book/history/${id}`,
           { withCredentials: true }
         );
         if (data.success) setBookings(data.booked);

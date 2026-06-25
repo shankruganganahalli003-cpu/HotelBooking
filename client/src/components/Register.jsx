@@ -15,7 +15,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/api/auth/register",
+        "https://unidhuhkdccbdkj.onrender.com/api/auth/register",
         form,
         { headers: { "Content-Type": "application/json" }, withCredentials: true }
       );
