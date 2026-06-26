@@ -10,7 +10,7 @@ router.route("/update/:id").put(isauth,update);
 router.route("/delete/:id").delete(isauth,deletebook);
 router.route("/success/:id").get(isauth,success);
 router.route("/history/:id").get(isauth,booked);
-router.route("/getme/:id").get(getme);
+router.route("/getme/:id").get(isauth,getme);
 
 
 module.exports = router;
