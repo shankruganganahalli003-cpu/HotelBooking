@@ -53,7 +53,7 @@ const UpdateHistory = () => {
     setLoading(true);
     try {
       const { data } = await axios.put(
-        `http://localhost:3000/api/book/update/${id}`,
+        `https://unidhuhkdccbdkj.onrender.com/api/book/update/${id}`,
         form,
         { withCredentials: true }
       );
